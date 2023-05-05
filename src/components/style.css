@@ -1,0 +1,27 @@
+.film-container {
+    font-size: "30px";
+    padding: ".5rem";
+    margin-block: 2rem;
+    list-style: none;
+    padding-bottom: .5rem;
+    border-bottom: 5px solid white;
+}
+
+.flex-container {
+    display: flex;
+    gap: .5rem;
+}
+
+.film-text {
+    padding-inline: 5rem;
+    text-align: start;
+}
+
+h2 {
+    text-align: start;
+    font-size: 1.6rem;
+}
+
+img {
+    width: 200px
+}

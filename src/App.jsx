@@ -1,55 +1,39 @@
-import { Component } from "react";
+import { useState } from "react";
+import FilmsList from "./components/filmsList";
 import "./App.css";
 
-class App extends Component {
+function App(props) {
 
-  constructor() {
-    //Super calls the parent constructor
-    super();
+  const [list, setList] = useState(["ready", "set", "GO"]);
+  const [text, setText] = useState("");
 
-    this.state = {
-      list: ["ready", "set", "go"],
-      text: "",
-    }
-
-    //Make sure that the method is bound to this class
-    //Aka, keep Texas from seceding
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+  function handleChange(event) {
+    setText(event.target.value);
   }
 
-  handleChange(event) {
-    this.setState({
-      text: event.target.value
-    });
-  }
-
-  handleSubmit(event){
+  function handleSubmit(event){
     event.preventDefault();
-    this.setState({
-      list: [...this.state.list, this.state.text]
-    });
+    setList([...list, text]);
   }
 
-  render() {
-    return (
-      <div className="App">
-        <h1>Learning React</h1>
-        <form onSubmit={this.handleSubmit}>
-          <input type="text" name="listInput" id="listInput"
-            value={this.state.text}
-            onChange={this.handleChange}
-          />
-          <button type="submit">Add</button>
-        </form>
-        <ul>
-          {this.state.list.map((item, index) => {
-            return <li key={item+index}>{item}</li>;
-          })}
-        </ul>
-      </div>
-    );
-  }
+  return (
+    <div className="App">
+      <h1>Studio Ghibli Films</h1>
+      <form onSubmit={handleSubmit}>
+        <input type="text" name="listInput" id="listInput"
+          value={text}
+          onChange={handleChange}
+        />
+        <button type="submit">Add</button>
+      </form>
+      <ul>
+        {list.map((item, index) => {
+          return <li key={item+index}>{item}</li>;
+        })}
+      </ul>
+      <FilmsList />
+    </div>
+  );
 }
 
 export default App;
