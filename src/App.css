@@ -33,3 +33,24 @@
     transform: rotate(360deg);
   }
 }
+
+li {
+  list-style: none;
+  text-align: start;
+}
+
+li > a {
+  text-decoration: none;
+  font-size: 2rem;
+}
+
+.currPath {
+  color: orange;
+  font-size: 2.2rem;
+}
+.currPath::before{
+  content:"* ";
+}
+.currPath::after {
+  content:" *";
+}
