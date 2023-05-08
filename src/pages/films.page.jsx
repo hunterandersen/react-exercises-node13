@@ -1,5 +1,9 @@
 import { useState, useEffect } from "react";
-import { filterFilmsByDirector, getListOf } from "../helpers/film.helpers";
+import {
+  filterFilmsByDirector,
+  getListOf,
+  getFilmStats,
+} from "../helpers/film.helpers";
 import { Link } from "react-router-dom";
 import "./style.css";
 
@@ -30,23 +34,44 @@ export default function FilmsPage(props) {
   //Derived State
   const filmsByDirector = filterFilmsByDirector(list, searchDirector);
   const directors = getListOf(list, "director");
+  const { avg_score, total, latest } = getFilmStats(list);
 
   return (
     <div>
-      <h1 style={{textAlign:"center"}}>Studio Ghibli Films</h1>
+      <h1 style={{ textAlign: "center" }}>Studio Ghibli Films</h1>
       <div className="form-group">
         <label htmlFor="directorSelect">Pick a Director</label>
-        <select 
-          name="directorSelect" 
+        <select
+          name="directorSelect"
           id="directorSelect"
           value={searchDirector}
-          onChange={(ev)=>{setSearchDirector(ev.target.value)}}
+          onChange={(ev) => {
+            setSearchDirector(ev.target.value);
+          }}
         >
           <option value="">All Directors</option>
           {directors.map((director, index) => {
-            return <option key={director+index} value={director}>{director}</option>
+            return (
+              <option key={director + index} value={director}>
+                {director}
+              </option>
+            );
           })}
         </select>
+      </div>
+      <div>
+        <div>
+          <span># Of Films: </span>
+          <span>{total}</span>
+        </div>
+        <div>
+          <span>Average Rating: </span>
+          <span>{avg_score.toFixed(2)}</span>
+        </div>
+        <div>
+          <span>Latest Film: </span>
+          <span>{latest}</span>
+        </div>
       </div>
       <ul>
         {filmsByDirector.map((film) => {
