@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { filterFilmsByDirector, getListOf } from "../helpers/film.helpers";
+import { Link } from "react-router-dom";
 import "./style.css";
 
 export default function FilmsPage(props) {
@@ -42,8 +43,8 @@ export default function FilmsPage(props) {
           onChange={(ev)=>{setSearchDirector(ev.target.value)}}
         >
           <option value="">All Directors</option>
-          {directors.map((director) => {
-            return <option value={director}>{director}</option>
+          {directors.map((director, index) => {
+            return <option key={director+index} value={director}>{director}</option>
           })}
         </select>
       </div>
@@ -51,7 +52,7 @@ export default function FilmsPage(props) {
         {filmsByDirector.map((film) => {
           return (
             <li className="film-container" key={film.id}>
-              <h2>{film.title}</h2>
+              <Link to={`/film/${film.id}`}>{film.title}</Link>
               <div className="flex-container">
                 <img src={film.image} alt="Film Poster" />
                 <p className="film-text">

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { BrowserRouter, NavLink, Routes, Route } from "react-router-dom";
-import { HomePage, FilmsPage } from "./pages/index.js";
+import { HomePage, FilmsPage, SingleFilmPage } from "./pages/index.js";
 import "./App.css";
 
 function App(props) {
@@ -32,6 +32,8 @@ function App(props) {
           <Route path="/" element={<HomePage />} />
           {/* http://localhost:3000/films */}
           <Route path="films" element={<FilmsPage />} />
+          {/* http://localhost:3000/film/abc-123-blah-blah */}
+          <Route path="film/:id" element={<SingleFilmPage />} />
         </Routes>
       </div>
     </BrowserRouter>
