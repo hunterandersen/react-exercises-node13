@@ -59,7 +59,7 @@ export default function FilmsPage(props) {
           })}
         </select>
       </div>
-      <div>
+      <div className="aggregateInfo">
         <div>
           <span># Of Films: </span>
           <span>{total}</span>

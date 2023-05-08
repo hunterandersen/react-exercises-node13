@@ -18,10 +18,8 @@ export function getFilmStats(list) {
   const accScore = list.reduce((acc, curr) => {
     return acc + parseInt(curr.rt_score);
   }, 0);
-  console.log("RT Score Total:", accScore);
 
   const avgScore = accScore / list.length;
-  console.log("Average Score:", avgScore);
 
   //Convert our list of objects into a list of numbers
   const mappedList = list.map((ele) => {
@@ -29,7 +27,6 @@ export function getFilmStats(list) {
   });
   //Find the latest year by finding the largest number in the array
   const latest = Math.max(...mappedList);
-  console.log("Latest Year:", latest);
 
   return {
     acc_score: accScore,
